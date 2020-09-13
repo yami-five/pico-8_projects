@@ -104,7 +104,7 @@ function _draw()
 	line(0,100,128,100,7)
 	draw_everything()
 	move_everything()
-	draw_letters()
+	//draw_letters()
 	if(counter<5)then
 		spr(0,x,y,2,2)
 	else
