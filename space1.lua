@@ -320,7 +320,7 @@ function _update()
 				shoot()
 				s_counter=0
 				sfx(0)
-				if(score>=30000)then
+				if(re>=30000)then
 					is_boss_fight=true
 				end
 			end
