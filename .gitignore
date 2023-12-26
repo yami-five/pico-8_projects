@@ -1,6 +1,15 @@
+.vs
+*.bin
 *.png
 *.zip
 *.html
 *.js
 *.gif
 *.p8
+*.pod
+*.dll
+*.*db*
+*.json
+*.sqlite
+*.txt
+*.jpg
