@@ -1,5 +1,5 @@
 t1=0
-texture='1a1aa1a11a1aa1a1'
+texture='677765677656777677776566665677777777655ee55677777776555ee55567776665555ee55556665555555665555555665555677655556676eee6e77e6eee6776eee6eeee6eee676655556ee655556655555556655555556665555ee55556667776555ee55567777777655ee556777777776566665677776777656776567776'
 -- texture='0123456789abcdef'
 --rysuje linie od x1y do x2y
 	--linia jest zawsze pozioma
@@ -25,11 +25,11 @@ texture='1a1aa1a11a1aa1a1'
             uv_x=Ba*uv0[1]+Bb*uv1[1]+Bc*uv2[1]
             uv_y=Ba*uv0[2]+Bb*uv1[2]+Bc*uv2[2]
             uv_x = max(0, min(1, uv_x))
-            uv_x=flr(uv_x*4)+1
+            uv_x=flr(uv_x*16)+1
             uv_y = max(0, min(1, uv_y))
-            uv_y=flr(uv_y*4)+1
-            texture_index=flr((uv_y-1) *4 + uv_x)
-            texture_index = max(0, min(16, texture_index))
+            uv_y=flr(uv_y*16)+1
+            texture_index=flr((uv_y-1) *16 + uv_x)
+            texture_index = max(0, min(256, texture_index))
             local texture_color1 = sub(texture,texture_index,texture_index)
             -- Ba=((p1[2]-p2[2])*((x*2+1)-p2[1])+(p2[1]-p1[1])*(y-p2[2]))*inv
             -- Bb=((p2[2]-p0[2])*((x*2+1)-p2[1])+(p0[1]-p2[1])*(y-p2[2]))*inv
@@ -210,7 +210,7 @@ function draw_cube()
 --2 bcd
 --tric dostaje liste wierzcholkow
 --w formie wspolrzednych xy
-		//cc=colors[(i+3)/4]
+		--cc=colors[(i+3)/4]
 		tric(
 			vt[a*3+1],
 			vt[a*3+2],
