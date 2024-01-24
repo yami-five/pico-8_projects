@@ -4,3 +4,11 @@
 *.js
 *.gif
 *.p8
+*.txt
+*.json
+*.sqlite
+*.h
+*.bin
+*.jpg
+*.db
+*.suo
