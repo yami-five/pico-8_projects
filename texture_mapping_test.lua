@@ -1,17 +1,6 @@
 t1=0
--- texture={
---     '1','a','1','a',
---     'a','1','a','1',
---     '1','a','1','a',
---     'a','1','a','1'
--- }
 texture='1a1aa1a11a1aa1a1'
--- texture={
---         '0','1','2','3',
---         '4','5','6','7',
---         '8','9','a','b',
---         'c','d','e','f'
---     }
+-- texture='0123456789abcdef'
 --rysuje linie od x1y do x2y
 	--linia jest zawsze pozioma
     function rasterize(y, x0, x1, uv0, uv1, uv2, inv,p0,p1,p2)
@@ -33,9 +22,6 @@ texture='1a1aa1a11a1aa1a1'
             Ba=((p1[2]-p2[2])*(x*2-p2[1])+(p2[1]-p1[1])*(y-p2[2]))*inv
             Bb=((p2[2]-p0[2])*(x*2-p2[1])+(p0[1]-p2[1])*(y-p2[2]))*inv
             Bc=1-Ba-Bb
-            -- Ba = max(0, min(1, Ba))
-            -- Bb = max(0, min(1, Bb))
-            -- Bc = max(0, min(1, Bc))
             uv_x=Ba*uv0[1]+Bb*uv1[1]+Bc*uv2[1]
             uv_y=Ba*uv0[2]+Bb*uv1[2]+Bc*uv2[2]
             uv_x = max(0, min(1, uv_x))
@@ -44,21 +30,20 @@ texture='1a1aa1a11a1aa1a1'
             uv_y=flr(uv_y*4)+1
             texture_index=flr((uv_y-1) *4 + uv_x)
             texture_index = max(0, min(16, texture_index))
-            --local texture_color1 = texture[texture_index]
             local texture_color1 = sub(texture,texture_index,texture_index)
-            -- Ba=((p1[2]-p2[2])*(x*2+1-p2[1])+(p2[1]-p1[1])*(y-p2[2]))*inv
-            -- Bb=((p2[2]-p0[2])*(x*2+1-p2[1])+(p0[1]-p2[1])*(y-p2[2]))*inv
+            -- Ba=((p1[2]-p2[2])*((x*2+1)-p2[1])+(p2[1]-p1[1])*(y-p2[2]))*inv
+            -- Bb=((p2[2]-p0[2])*((x*2+1)-p2[1])+(p0[1]-p2[1])*(y-p2[2]))*inv
             -- Bc=1-Ba-Bb
-            -- Ba = max(0, min(1, Ba))
-            -- Bb = max(0, min(1, Bb))
-            -- Bc = max(0, min(1, Bc))
             -- uv_x=Ba*uv0[1]+Bb*uv1[1]+Bc*uv2[1]
             -- uv_y=Ba*uv0[2]+Bb*uv1[2]+Bc*uv2[2]
             -- uv_x = max(0, min(1, uv_x))
+            -- uv_x=flr(uv_x*4)+1
             -- uv_y = max(0, min(1, uv_y))
-            --local texture_color2 = texture[max(1,min(16,flr(uv_y * 8 + uv_x*8)+1))]
-            --memset(0x6000 + y * 64 + x, '0x'..texture_color1..texture_color2, 2)
-            memset(0x6000 + y * 64 + x, "0x0"..texture_color1, 2)
+            -- uv_y=flr(uv_y*4)+1
+            -- texture_index=flr((uv_y-1) *4 + uv_x)
+            -- texture_index = max(0, min(16, texture_index))
+            -- local texture_color2 = sub(texture,texture_index,texture_index)
+            memset(0x6000 + y * 64 + x, "0x"..texture_color1..texture_color1, 2)
             -- p ,. rinth("uv_x: " .. uv_x .. " uv_y: " .. uv_y .. " color: " .. texture_color1 ,'test.txt',false)
             -- printh("Ba: " .. Ba .. " Bb: " .. Bb .. " Bc: " .. Bc,'test.txt',false)
             -- printh("uv0[1]: " .. uv0[1] .. " uv0[2]: " .. uv0[2] .. " uv1[1]: " .. uv1[1] .. " p1[2]: " .. uv1[2] .. " uv2[1]: " .. uv2[1] .. " uv2[2]: " .. uv2[2],'test.txt',false)
