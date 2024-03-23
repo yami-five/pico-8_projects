@@ -1,6 +1,6 @@
 .vs
 *.bin
-*.png
+*.png*
 *.zip
 *.html
 *.js
@@ -14,3 +14,7 @@
 *.jpg
 *.db
 *.suo
+*.webp
+*.kra*
+*.blend*
+*.psd
